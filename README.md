@@ -1,13 +1,60 @@
 Devtoolster
 ===
+[![LICENSE](https://img.shields.io/github/license/timo-reymann/devtoolster)](https://github.com/timo-reymann/devtoolster/blob/main/LICENSE)
+[![CircleCI](https://circleci.com/gh/timo-reymann/devtoolster.svg?style=shield)](https://app.circleci.com/pipelines/github/timo-reymann/devtoolster)
+[![GitHub Release](https://img.shields.io/github/v/tag/timo-reymann/devtoolster?label=version)](https://github.com/timo-reymann/devtoolster/releases)
+[![Renovate](https://img.shields.io/badge/renovate-enabled-green?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjkgMzY5Ij48Y2lyY2xlIGN4PSIxODkuOSIgY3k9IjE5MC4yIiByPSIxODQuNSIgZmlsbD0iI2ZmZTQyZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUgLTYpIi8+PHBhdGggZmlsbD0iIzhiYjViNSIgZD0iTTI1MSAyNTZsLTM4LTM4YTE3IDE3IDAgMDEwLTI0bDU2LTU2YzItMiAyLTYgMC03bC0yMC0yMWE1IDUgMCAwMC03IDBsLTEzIDEyLTktOCAxMy0xM2ExNyAxNyAwIDAxMjQgMGwyMSAyMWM3IDcgNyAxNyAwIDI0bC01NiA1N2E1IDUgMCAwMDAgN2wzOCAzOHoiLz48cGF0aCBmaWxsPSIjZDk1NjEyIiBkPSJNMzAwIDI4OGwtOCA4Yy00IDQtMTEgNC0xNiAwbC00Ni00NmMtNS01LTUtMTIgMC0xNmw4LThjNC00IDExLTQgMTUgMGw0NyA0N2M0IDQgNCAxMSAwIDE1eiIvPjxwYXRoIGZpbGw9IiMyNGJmYmUiIGQ9Ik04MSAxODVsMTgtMTggMTggMTgtMTggMTh6Ii8+PHBhdGggZmlsbD0iIzI1YzRjMyIgZD0iTTIyMCAxMDBsMjMgMjNjNCA0IDQgMTEgMCAxNkwxNDIgMjQwYy00IDQtMTEgNC0xNSAwbC0yNC0yNGMtNC00LTQtMTEgMC0xNWwxMDEtMTAxYzUtNSAxMi01IDE2IDB6Ii8+PHBhdGggZmlsbD0iIzFkZGVkZCIgZD0iTTk5IDE2N2wxOC0xOCAxOCAxOC0xOCAxOHoiLz48cGF0aCBmaWxsPSIjMDBhZmIzIiBkPSJNMjMwIDExMGwxMyAxM2M0IDQgNCAxMSAwIDE2TDE0MiAyNDBjLTQgNC0xMSA0LTE1IDBsLTEzLTEzYzQgNCAxMSA0IDE1IDBsMTAxLTEwMWM1LTUgNS0xMSAwLTE2eiIvPjxwYXRoIGZpbGw9IiMyNGJmYmUiIGQ9Ik0xMTYgMTQ5bDE4LTE4IDE4IDE4LTE4IDE4eiIvPjxwYXRoIGZpbGw9IiMxZGRlZGQiIGQ9Ik0xMzQgMTMxbDE4LTE4IDE4IDE4LTE4IDE4eiIvPjxwYXRoIGZpbGw9IiMxYmNmY2UiIGQ9Ik0xNTIgMTEzbDE4LTE4IDE4IDE4LTE4IDE4eiIvPjxwYXRoIGZpbGw9IiMyNGJmYmUiIGQ9Ik0xNzAgOTVsMTgtMTggMTggMTgtMTggMTh6Ii8+PHBhdGggZmlsbD0iIzFiY2ZjZSIgZD0iTTYzIDE2N2wxOC0xOCAxOCAxOC0xOCAxOHpNOTggMTMxbDE4LTE4IDE4IDE4LTE4IDE4eiIvPjxwYXRoIGZpbGw9IiMzNGVkZWIiIGQ9Ik0xMzQgOTVsMTgtMTggMTggMTgtMTggMTh6Ii8+PHBhdGggZmlsbD0iIzFiY2ZjZSIgZD0iTTE1MyA3OGwxOC0xOCAxOCAxOC0xOCAxOHoiLz48cGF0aCBmaWxsPSIjMzRlZGViIiBkPSJNODAgMTEzbDE4LTE3IDE4IDE3LTE4IDE4ek0xMzUgNjBsMTgtMTggMTggMTgtMTggMTh6Ii8+PHBhdGggZmlsbD0iIzk4ZWRlYiIgZD0iTTI3IDEzMWwxOC0xOCAxOCAxOC0xOCAxOHoiLz48cGF0aCBmaWxsPSIjYjUzZTAyIiBkPSJNMjg1IDI1OGw3IDdjNCA0IDQgMTEgMCAxNWwtOCA4Yy00IDQtMTEgNC0xNiAwbC02LTdjNCA1IDExIDUgMTUgMGw4LTdjNC01IDQtMTIgMC0xNnoiLz48cGF0aCBmaWxsPSIjOThlZGViIiBkPSJNODEgNzhsMTgtMTggMTggMTgtMTggMTh6Ii8+PHBhdGggZmlsbD0iIzAwYTNhMiIgZD0iTTIzNSAxMTVsOCA4YzQgNCA0IDExIDAgMTZMMTQyIDI0MGMtNCA0LTExIDQtMTUgMGwtOS05YzUgNSAxMiA1IDE2IDBsMTAxLTEwMWM0LTQgNC0xMSAwLTE1eiIvPjxwYXRoIGZpbGw9IiMzOWQ5ZDgiIGQ9Ik0yMjggMTA4bC04LThjLTQtNS0xMS01LTE2IDBMMTAzIDIwMWMtNCA0LTQgMTEgMCAxNWw4IDhjLTQtNC00LTExIDAtMTVsMTAxLTEwMWM1LTQgMTItNCAxNiAweiIvPjxwYXRoIGZpbGw9IiNhMzM5MDQiIGQ9Ik0yOTEgMjY0bDggOGM0IDQgNCAxMSAwIDE2bC04IDdjLTQgNS0xMSA1LTE1IDBsLTktOGM1IDUgMTIgNSAxNiAwbDgtOGM0LTQgNC0xMSAwLTE1eiIvPjxwYXRoIGZpbGw9IiNlYjZlMmQiIGQ9Ik0yNjAgMjMzbC00LTRjLTYtNi0xNy02LTIzIDAtNyA3LTcgMTcgMCAyNGw0IDRjLTQtNS00LTExIDAtMTZsOC04YzQtNCAxMS00IDE1IDB6Ii8+PHBhdGggZmlsbD0iIzEzYWNiZCIgZD0iTTEzNCAyNDhjLTQgMC04LTItMTEtNWwtMjMtMjNhMTYgMTYgMCAwMTAtMjNMMjAxIDk2YTE2IDE2IDAgMDEyMiAwbDI0IDI0YzYgNiA2IDE2IDAgMjJMMTQ2IDI0M2MtMyAzLTcgNS0xMiA1em03OC0xNDdsLTQgMi0xMDEgMTAxYTYgNiAwIDAwMCA5bDIzIDIzYTYgNiAwIDAwOSAwbDEwMS0xMDFhNiA2IDAgMDAwLTlsLTI0LTIzLTQtMnoiLz48cGF0aCBmaWxsPSIjYmY0NDA0IiBkPSJNMjg0IDMwNGMtNCAwLTgtMS0xMS00bC00Ny00N2MtNi02LTYtMTYgMC0yMmw4LThjNi02IDE2LTYgMjIgMGw0NyA0NmM2IDcgNiAxNyAwIDIzbC04IDhjLTMgMy03IDQtMTEgNHptLTM5LTc2Yy0xIDAtMyAwLTQgMmwtOCA3Yy0yIDMtMiA3IDAgOWw0NyA0N2E2IDYgMCAwMDkgMGw3LThjMy0yIDMtNiAwLTlsLTQ2LTQ2Yy0yLTItMy0yLTUtMnoiLz48L3N2Zz4=)](https://renovatebot.com)
 
-<div align="center">
-  <img src=".github/images/logo.png" width="256" />
-</div>
+<p align="center">
+	<img width="300" src="./.github/images/logo.png">
+    <br />
+    Register custom DevTools panels from any web application — no overlays, no hacks.
+</p>
 
 > :construction: This project is under active development. Expect rough edges, missing features, and breaking changes.
 
-Devtoolster is a browser extension that lets web applications register custom panels directly inside the browser's built-in DevTools — no overlays, no query-parameter hacks, just a clean panel alongside the native tools.
+## Features
+
+- **Native DevTools panel** — a custom _Devtoolster_ tab alongside the built-in Chrome/Firefox DevTools
+- **Simple page-facing API** — `@devtoolster/web-api` lets any web app register controls via `window.postMessage`
+- **Rich control types** — buttons, text inputs, dropdowns, color pickers, toggles, sliders, and data tables
+- **Cross-browser** — Chrome and Firefox, both built from a single WXT config
+- **Tab-based organisation** — group registered controls into named tabs within the panel
+
+## Requirements
+
+- Node.js 18+ and npm / yarn
+- Chrome 88+ or Firefox 109+ (Manifest V3)
+
+## Installation
+
+```bash
+npm install
+```
+
+## Usage
+
+### Run the extension (development)
+
+```bash
+npm run dev            # Chrome
+npm run dev:firefox    # Firefox
+```
+
+### Build for production
+
+```bash
+npm run build          # -> extension/.output/chrome-mv3
+npm run build:firefox  # -> extension/.output/firefox-mv3
+```
+
+### Open the demo
+
+```bash
+npm run demo           # serves http://localhost:8080
+```
+
+Then open DevTools → _Devtoolster_ tab.
 
 ## Background
 
@@ -61,56 +108,31 @@ The extension is built with [WXT](https://wxt.dev) (Vite-based) in TypeScript, w
 - Automated tests (e2e and unit)
 - User approval prompt — per-session consent before the panel activates
 
-## Getting started
+## Documentation
+
+- [Privacy policy](./PRIVACY.md)
+
+## Contributing
+
+I love your input! I want to make contributing to this project as easy and transparent as possible, whether it's:
+
+- Reporting a bug
+- Discussing the current state of the configuration
+- Submitting a fix
+- Proposing new features
+- Becoming a maintainer
+
+To get started please read the [Contribution Guidelines](./CONTRIBUTING.md).
+
+## Development
 
 ### Requirements
 
-- Node.js 18+ and npm
-- Chrome **or** Firefox with Manifest V3 support (Firefox 109+, Chrome 88+)
+- Node.js 18+
+- npm
+- Chrome or Firefox
 
-The repository is an **npm workspace** with three packages: `@devtoolster/extension` (the WXT extension), `@devtoolster/web-api` (the typed page-facing API), and `@devtoolster/demo` (the demo page). A single install from the root covers all three.
-
-### 1. Install dependencies
-
-```bash
-npm install
-```
-
-### 2. Run the extension
-
-**Development (recommended)** — launches a browser with the extension loaded and hot-reload enabled:
-
-```bash
-npm run dev            # Chrome
-npm run dev:firefox    # Firefox
-```
-
-**Or build and load manually:**
-
-```bash
-npm run build          # -> extension/.output/chrome-mv3
-npm run build:firefox  # -> extension/.output/firefox-mv3
-```
-
-- **Chrom(ium)** (Chrome, Edge, Opera, …)
-  - Go to `chrome://extensions`
-  - Enable developer mode
-  - Click _Load unpacked_ and select `extension/.output/chrome-mv3`
-- **Firefox**
-  - Go to `about:debugging` → _This Firefox_
-  - Click _Load Temporary Add-on_ and select `extension/.output/firefox-mv3/manifest.json`
-
-### 3. Open the demo
-
-```bash
-npm run demo     # serves http://localhost:8080
-```
-
-- Open http://localhost:8080 in your browser
-- Open DevTools and go to the _Devtoolster_ tab
-- You should see a tabbed panel with two tabs: **Table** and **Controls**
-
-## Smoke test checklist
+### Smoke test checklist
 
 After loading the extension and opening the demo page + DevTools panel:
 
