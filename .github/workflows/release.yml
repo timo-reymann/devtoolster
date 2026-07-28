@@ -1,0 +1,66 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      firefox-guid: ${{ steps.read-guid.outputs.guid }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+          corepack: true
+      - run: yarn install --immutable
+      - run: yarn workspace @devtoolster/extension build
+      - run: yarn workspace @devtoolster/extension zip
+      - run: yarn workspace @devtoolster/extension zip:firefox
+      - name: Read Firefox GUID from manifest
+        id: read-guid
+        run: |
+          guid=$(jq -r '.browser_specific_settings.gecko.id' extension/.output/firefox-mv3/manifest.json)
+          echo "guid=$guid" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: extension-zips
+          path: extension/.output/*.zip
+
+  publish-chrome:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: extension-zips
+          path: zips
+      - uses: wdzeng/chrome-extension@v2
+        with:
+          extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
+          zip-path: zips/devtoolsterextension-*-chrome.zip
+          publisher-id: ${{ secrets.CHROME_PUBLISHER_ID }}
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+  publish-firefox:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: extension-zips
+          path: zips
+      - uses: wdzeng/firefox-addon@v1
+        with:
+          addon-guid: ${{ needs.build.outputs.firefox-guid }}
+          xpi-path: zips/devtoolsterextension-*-firefox.zip
+          source-file-path: zips/devtoolsterextension-*-sources.zip
+          license: MIT
+          jwt-issuer: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          jwt-secret: ${{ secrets.FIREFOX_JWT_SECRET }}
