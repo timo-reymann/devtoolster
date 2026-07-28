@@ -16,26 +16,21 @@ jobs:
         with:
           node-version: 22
           cache: yarn
-          corepack: true
+      - run: corepack enable
       - run: yarn install --immutable
       - run: yarn workspace @devtoolster/extension build
-      - name: Zip Chrome
-        run: yarn workspace @devtoolster/extension zip -b chrome
-      - name: Zip Firefox
-        run: yarn workspace @devtoolster/extension zip -b firefox
-      - name: List output directory
-        run: ls -la extension/.output/
-      - name: Find zip files
-        run: find extension/.output/ -name '*.zip'
+      - run: yarn workspace @devtoolster/extension zip
+      - run: yarn workspace @devtoolster/extension zip:firefox
       - name: Read Firefox GUID from manifest
         id: read-guid
         run: |
           guid=$(jq -r '.browser_specific_settings.gecko.id' extension/.output/firefox-mv3/manifest.json)
           echo "guid=$guid" >> "$GITHUB_OUTPUT"
+      - run: mkdir -p zips && cp extension/.output/devtoolsterextension-*.zip zips/
       - uses: actions/upload-artifact@v4
         with:
           name: extension-zips
-          path: extension/.output/*.zip
+          path: zips/
 
   publish-chrome:
     needs: build
@@ -46,10 +41,15 @@ jobs:
         with:
           name: extension-zips
           path: zips
+      - name: Identify Chrome zip
+        id: chrome-zip
+        run: |
+          zip=$(ls zips/*-chrome.zip)
+          echo "path=$zip" >> "$GITHUB_OUTPUT"
       - uses: wdzeng/chrome-extension@v2
         with:
           extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
-          zip-path: zips/devtoolsterextension-*-chrome.zip
+          zip-path: ${{ steps.chrome-zip.outputs.path }}
           publisher-id: ${{ secrets.CHROME_PUBLISHER_ID }}
           client-id: ${{ secrets.CHROME_CLIENT_ID }}
           client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
@@ -64,11 +64,18 @@ jobs:
         with:
           name: extension-zips
           path: zips
+      - name: Identify Firefox and source zips
+        id: ff-zip
+        run: |
+          xpi=$(ls zips/*-firefox.zip)
+          src=$(ls zips/*-sources.zip)
+          echo "xpi-path=$xpi" >> "$GITHUB_OUTPUT"
+          echo "source-path=$src" >> "$GITHUB_OUTPUT"
       - uses: wdzeng/firefox-addon@v1
         with:
           addon-guid: ${{ needs.build.outputs.firefox-guid }}
-          xpi-path: zips/devtoolsterextension-*-firefox.zip
-          source-file-path: zips/devtoolsterextension-*-sources.zip
+          xpi-path: ${{ steps.ff-zip.outputs.xpi-path }}
+          source-file-path: ${{ steps.ff-zip.outputs.source-path }}
           license: MIT
           jwt-issuer: ${{ secrets.FIREFOX_JWT_ISSUER }}
           jwt-secret: ${{ secrets.FIREFOX_JWT_SECRET }}
