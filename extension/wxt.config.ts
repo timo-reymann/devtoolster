@@ -10,7 +10,7 @@ export default defineConfig({
   manifest: ({ browser }) => ({
     name: 'Devtoolster',
     description: 'Devtoolster browser extension',
-    version: process.env.VERSION || '0.0.0',
+    version: process.env.VERSION || process.env.npm_package_version || '0.0.0',
     icons: {
       '128': 'icons/settings-gears-gray.png',
     },
