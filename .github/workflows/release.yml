@@ -34,6 +34,7 @@ jobs:
   publish-chrome:
     needs: build
     runs-on: ubuntu-latest
+    environment: chrome
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -51,6 +52,7 @@ jobs:
   publish-firefox:
     needs: build
     runs-on: ubuntu-latest
+    environment: firefox
     steps:
       - uses: actions/download-artifact@v4
         with:
