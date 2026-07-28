@@ -151,3 +151,4 @@ After loading the extension and opening the demo page + DevTools panel:
 - [ ] **Controls** tab: Unsupported element `{type: "test"}` logs an error (expected)
 - [ ] Reloading the page (F5) resets and re-registers all controls under both tabs
 - [ ] No "message port closed before a response was received" warnings in the background service-worker console (Chrome: inspect service worker from `chrome://extensions`)
+
