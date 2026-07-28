@@ -19,8 +19,14 @@ jobs:
           corepack: true
       - run: yarn install --immutable
       - run: yarn workspace @devtoolster/extension build
-      - run: yarn workspace @devtoolster/extension zip
-      - run: yarn workspace @devtoolster/extension zip:firefox
+      - name: Zip Chrome
+        run: yarn workspace @devtoolster/extension zip -b chrome
+      - name: Zip Firefox
+        run: yarn workspace @devtoolster/extension zip -b firefox
+      - name: List output directory
+        run: ls -la extension/.output/
+      - name: Find zip files
+        run: find extension/.output/ -name '*.zip'
       - name: Read Firefox GUID from manifest
         id: read-guid
         run: |
