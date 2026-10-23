@@ -29,7 +29,7 @@ jobs:
           guid=$(jq -r '.browser_specific_settings.gecko.id' extension/.output/firefox-mv3/manifest.json)
           echo "guid=$guid" >> "$GITHUB_OUTPUT"
       - run: mkdir -p zips && cp extension/.output/devtoolsterextension-*.zip zips/
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: extension-zips
           path: zips/
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: chrome
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: extension-zips
           path: zips
@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: firefox
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: extension-zips
           path: zips
