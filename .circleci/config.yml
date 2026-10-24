@@ -14,7 +14,7 @@ orbs:
 executors:
   node:
     docker:
-      - image: cimg/node:24.22
+      - image: cimg/node:24.22.1
 
 commands:
   install-deps:
